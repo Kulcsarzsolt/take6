@@ -3,11 +3,21 @@ package Nimmt6;
 import java.util.Set;
 
 public class Player {
+    private String name;
     Set<Card> cards;
-    int numberOfCattleHeads;
+    private int numberOfCattleHeads;
 
-    Player(Set<Card> cards) {
+    Player(String name, Set<Card> cards) {
+        this.name = name;
         this.cards = cards;
         this.numberOfCattleHeads = 0;
+    }
+
+    public int getNumberOfCattleHeads() {
+        return numberOfCattleHeads;
+    }
+
+    public void setNumberOfCattleHeads(int numberOfCattleHeads) {
+        this.numberOfCattleHeads = numberOfCattleHeads;
     }
 }

@@ -50,9 +50,13 @@ public class Deck {
         Set<Card> result = new HashSet<>();
 
         for (int randomCardNumber : randomCardNumbers) {
-            Card currentCard = cards.get(randomCardNumber);
-            cards.remove(currentCard);
+            Card currentCard = cards.get(randomCardNumber - 1);
+//            cards.remove(currentCard);
             result.add(currentCard);
+        }
+
+        for (int randomCardNumber : randomCardNumbers) {
+            cards.removeIf(card -> card.getCardNumber() == randomCardNumber);
         }
 
         return result;
