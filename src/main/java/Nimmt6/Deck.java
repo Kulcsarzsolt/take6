@@ -45,13 +45,13 @@ public class Deck {
         return getCards(10);
     }
 
+    // TODO: Fix (See: Issue #1)
     private Set<Card> getCards(int numberOfCards) {
-        int randomCardNumbers[] = generateTenRandomNumbers(cards.size(), numberOfCards);
+        int randomCardNumbers[] = generateRandomNumbers(cards.size(), numberOfCards);
         Set<Card> result = new HashSet<>();
 
         for (int randomCardNumber : randomCardNumbers) {
-            Card currentCard = cards.get(randomCardNumber - 1);
-//            cards.remove(currentCard);
+            Card currentCard = cards.get(randomCardNumber);
             result.add(currentCard);
         }
 
@@ -63,7 +63,8 @@ public class Deck {
     }
 
 
-    private int[] generateTenRandomNumbers(int maxValue, int numberOfNumbers) {
+    // TODO: Refactor (See: Issue #2)
+    private int[] generateRandomNumbers(int maxValue, int numberOfNumbers) {
         Random random = new Random();
 
         int i, j;

@@ -1,6 +1,8 @@
 package Nimmt6;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
     private int cardNumber;
     private int numberOfCattleHeads;
 

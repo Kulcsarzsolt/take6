@@ -15,12 +15,13 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         ServerSocket listener = new ServerSocket(PORT);
+        Game game = new Game();
 
         while (true) {
             System.out.println("[SERVER] Waiting for client connection...");
             Socket client = listener.accept();
             System.out.println("[SERVER] Connected to client!");
-            ClientHandler clientThread = new ClientHandler(client);
+            ClientHandler clientThread = new ClientHandler(client, game);
             playerSockets.add(clientThread);
 
             pool.execute(clientThread);

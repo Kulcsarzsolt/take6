@@ -4,25 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    List<Player> players;
-    Deck deck;
-    Table table;
+    private List<Player> players;
+    private Deck deck;
+    private Table table;
 
-    Game(int numberOfPlayers) {
+    Game() {
         this.deck = new Deck();
         players = new ArrayList<>();
-        for(int i=1; i<=numberOfPlayers; i++){
-            players.add(new Player("Player" + i, deck.getTenRandomCard()));
-        }
         this.table = new Table(deck);
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void addNewPlayer(String playerName) {
+        players.add(new Player(playerName, deck.getTenRandomCard()));
     }
 
     @Override
     public String toString() {
-        return "Game{" +
-                "players=" + players +
-                ", deck=" + deck +
-                ", table=" + table +
-                '}';
+        return "Number of players: " + players.size();
     }
 }

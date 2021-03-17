@@ -5,19 +5,19 @@ import java.util.Set;
 // TODO: Remove this - Just for testing
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game(4);
+        Game game = new Game();
 
         System.out.println(game);
 
-        Player player1 = game.players.get(0);
-        Player player2 = game.players.get(1);
-        Player player3 = game.players.get(2);
-        Player player4 = game.players.get(3);
+        Player player1 = game.getPlayers().get(0);
+        Player player2 = game.getPlayers().get(1);
+        Player player3 = game.getPlayers().get(2);
+        Player player4 = game.getPlayers().get(3);
 
-        Set<Card> cardsPlayer1 = player1.cards;
-        Set<Card> cardsPlayer2 = player2.cards;
-        Set<Card> cardsPlayer3 = player3.cards;
-        Set<Card> cardsPlayer4 = player4.cards;
+        Set<Card> cardsPlayer1 = player1.getCards();
+        Set<Card> cardsPlayer2 = player2.getCards();
+        Set<Card> cardsPlayer3 = player3.getCards();
+        Set<Card> cardsPlayer4 = player4.getCards();
 
         System.out.println();
         for (Card card : cardsPlayer1) {
@@ -37,7 +37,7 @@ public class Main {
             System.out.print(card.getCardNumber() + " ");
         }
 
-        Table table = game.table;
+        Table table = game.getTable();
 
         table.addCardToTable(new Card(77, 5), player1);
     }

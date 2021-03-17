@@ -3,41 +3,59 @@ package Nimmt6;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class ClientHandler implements Runnable {
     private Socket playerSocket;
     private BufferedReader in;
-    private PrintWriter out;
+    private ObjectOutputStream out;
+    private Game game;
 
-    public ClientHandler(Socket socket) throws IOException {
+
+    public ClientHandler(Socket socket, Game game) throws IOException {
         this.playerSocket = socket;
+        this.game = game;
         in = new BufferedReader(new InputStreamReader(playerSocket.getInputStream()));
-        out = new PrintWriter(playerSocket.getOutputStream(), true);
+        out = new ObjectOutputStream(playerSocket.getOutputStream());
     }
 
     @Override
     public void run() {
         try {
-            while (true) {
-                String request = in.readLine();
+            String playerName = in.readLine();
 
-                if (request.equals("Q")) {
-                    break;
-                }
+            System.out.println(playerName + " has joined");
 
-                System.out.println(request + " has joined");
-            }
+            game.addNewPlayer(playerName);
+
+            Player currentPlayer = getPlayerByName(playerName);
+
+            List<Card> currentPlayerCards = currentPlayer.getCardsList();
+
+            out.writeObject(currentPlayerCards);
         } catch (IOException e) {
             System.err.println("IO exception in client handler");
         } finally {
-            out.close();
             try {
                 in.close();
+                out.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    // TODO: Move to Game.java
+    private Player getPlayerByName(String playerName) {
+        List<Player> players = game.getPlayers();
+        Predicate<Player> byName = player -> player.getName().equals(playerName);
+
+        // TODO: handle when player not found
+        return players.stream().filter(byName)
+                .collect(Collectors.toList()).get(0);
     }
 }
