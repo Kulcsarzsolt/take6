@@ -6,10 +6,10 @@ import java.util.Set;
 
 public class Player {
     private String name;
-    private Set<Card> cards;
+    private List<Card> cards;
     private int numberOfCattleHeads;
 
-    Player(String name, Set<Card> cards) {
+    Player(String name, List<Card> cards) {
         this.name = name;
         this.cards = cards;
         this.numberOfCattleHeads = 0;
@@ -19,7 +19,7 @@ public class Player {
         return name;
     }
 
-    public Set<Card> getCards() {
+    public List<Card> getCards() {
         return cards;
     }
 
