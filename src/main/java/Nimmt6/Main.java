@@ -1,44 +1,32 @@
 package Nimmt6;
 
+import java.util.List;
 import java.util.Set;
 
 // TODO: Remove this - Just for testing
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game();
+        Deck deck;
 
-        System.out.println(game);
 
-        Player player1 = game.getPlayers().get(0);
-        Player player2 = game.getPlayers().get(1);
-        Player player3 = game.getPlayers().get(2);
-        Player player4 = game.getPlayers().get(3);
+//
+        deck = new Deck();
 
-        Set<Card> cardsPlayer1 = player1.getCards();
-        Set<Card> cardsPlayer2 = player2.getCards();
-        Set<Card> cardsPlayer3 = player3.getCards();
-        Set<Card> cardsPlayer4 = player4.getCards();
+//        for (Integer randomNumber : deck.generateRandomNumbers(104, 10)) {
+//            System.out.print(randomNumber + " ");
+//        }
+        for (int i = 0; i < 10; i++) {
+            List<Card> cards = deck.getTenRandomCard();
+            for (Card card : cards) {
+                System.out.print(card.getCardNumber() + " ");
+            }
 
-        System.out.println();
-        for (Card card : cardsPlayer1) {
+            System.out.println();
+        }
+
+        for (Card card : deck.getFourRandomCard()) {
             System.out.print(card.getCardNumber() + " ");
         }
         System.out.println();
-        for (Card card : cardsPlayer2) {
-            System.out.print(card.getCardNumber() + " ");
-        }
-        System.out.println();
-        for (Card card : cardsPlayer3) {
-            System.out.print(card.getCardNumber() + " ");
-        }
-
-        System.out.println();
-        for (Card card : cardsPlayer4) {
-            System.out.print(card.getCardNumber() + " ");
-        }
-
-        Table table = game.getTable();
-
-        table.addCardToTable(new Card(77, 5), player1);
     }
 }

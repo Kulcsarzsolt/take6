@@ -1,6 +1,7 @@
 package Nimmt6;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Deck {
     private List<Card> cards;
@@ -35,59 +36,23 @@ public class Deck {
             Card card = new Card(i, numberOfCattleHeads);
             cards.add(card);
         }
+
+        Collections.shuffle(cards);
     }
 
-    public Set<Card> getFourRandomCard() {
+    public List<Card> getFourRandomCard() {
         return getCards(4);
     }
 
-    public Set<Card> getTenRandomCard() {
+    public List<Card> getTenRandomCard() {
         return getCards(10);
     }
 
-    // TODO: Fix (See: Issue #1)
-    private Set<Card> getCards(int numberOfCards) {
-        int randomCardNumbers[] = generateRandomNumbers(cards.size(), numberOfCards);
-        Set<Card> result = new HashSet<>();
+    private List<Card> getCards(int numberOfCards) {
+        List<Card> result = cards.stream().limit(numberOfCards).collect(Collectors.toList());
 
-        for (int randomCardNumber : randomCardNumbers) {
-            Card currentCard = cards.get(randomCardNumber);
-            result.add(currentCard);
-        }
-
-        for (int randomCardNumber : randomCardNumbers) {
-            cards.removeIf(card -> card.getCardNumber() == randomCardNumber);
-        }
+        cards.subList(0, numberOfCards).clear();
 
         return result;
-    }
-
-
-    // TODO: Refactor (See: Issue #2)
-    private int[] generateRandomNumbers(int maxValue, int numberOfNumbers) {
-        Random random = new Random();
-
-        int i, j;
-        int[] numbers = new int[numberOfNumbers];
-        for (i = 0; i < numberOfNumbers; i++) {
-            boolean added = false;
-            while (!added) {
-                int randomNumber = random.nextInt(maxValue + 1);
-                boolean unique = true;
-
-                for (j = 0; j < i; j++) {
-                    if ((randomNumber == numbers[j]) || (randomNumber == 0)) {
-                        unique = false;
-                    }
-                }
-
-                if (unique) {
-                    numbers[i] = randomNumber;
-                    added = true;
-                }
-            }
-        }
-
-        return numbers;
     }
 }
