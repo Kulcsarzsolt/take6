@@ -1,9 +1,11 @@
 package Nimmt6;
 
+import java.io.Serializable;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable {
     private List<Player> players;
     private Deck deck;
     private Table table;
@@ -22,8 +24,8 @@ public class Game {
         return table;
     }
 
-    public void addNewPlayer(String playerName) {
-        players.add(new Player(playerName, deck.getTenRandomCard()));
+    public void addNewPlayer(String playerName, Socket playerSocket) {
+        players.add(new Player(playerName, deck.getTenRandomCard(), playerSocket));
     }
 
     @Override

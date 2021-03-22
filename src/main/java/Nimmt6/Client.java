@@ -1,8 +1,10 @@
 package Nimmt6;
 
+import Nimmt6.request.Request;
+import Nimmt6.request.ServerRequest;
+
 import java.io.*;
 import java.net.Socket;
-import java.util.List;
 
 public class Client {
     private static final String SERVER_IP = "127.0.0.1";
@@ -23,8 +25,11 @@ public class Client {
     private static void getAndPrintPlayerCards(Socket socket) throws IOException, ClassNotFoundException {
         InputStream inputStream = socket.getInputStream();
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-        List<Card> cards = (List<Card>) objectInputStream.readObject();
-        GameUtils.printCards(cards);
+        ServerRequest serverRequest = (ServerRequest) objectInputStream.readObject();
+
+        if (serverRequest.getRequestType() == Request.LOOK_AT_YOUR_CARDS) {
+            GameUtils.printCards(serverRequest.getCards());
+        }
     }
 
     private static void readAndSetPlayerName(BufferedReader keyboard, PrintWriter out) throws IOException {

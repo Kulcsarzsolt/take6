@@ -1,5 +1,8 @@
 package Nimmt6;
 
+import Nimmt6.request.Request;
+import Nimmt6.request.ServerRequest;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -30,13 +33,13 @@ public class ClientHandler implements Runnable {
 
             System.out.println(playerName + " has joined");
 
-            game.addNewPlayer(playerName);
+            game.addNewPlayer(playerName, playerSocket);
+
 
             Player currentPlayer = getPlayerByName(playerName);
-
             List<Card> currentPlayerCards = currentPlayer.getCardsList();
 
-            out.writeObject(currentPlayerCards);
+            out.writeObject(new ServerRequest(playerName, Request.LOOK_AT_YOUR_CARDS, currentPlayerCards));
         } catch (IOException e) {
             System.err.println("IO exception in client handler");
         } finally {
