@@ -41,10 +41,18 @@ public class Deck {
     }
 
     public List<Card> getFourRandomCard() {
+        if(cards.size() < 4) {
+            throw new RuntimeException("There are not enough cards found for card distribution");
+        }
+
         return getCards(4);
     }
 
     public List<Card> getTenRandomCard() {
+        if(cards.size() < 10) {
+            throw new RuntimeException("There are not enough cards found for card distribution");
+        }
+
         return getCards(10);
     }
 
