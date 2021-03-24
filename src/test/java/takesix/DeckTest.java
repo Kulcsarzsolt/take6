@@ -27,7 +27,6 @@ public class DeckTest {
         assertEquals(playerCard.size(), 10);
     }
 
-
     @Test
     @DisplayName("Test card distribution to table")
     public void testCardDistributionToTable() {
@@ -39,39 +38,15 @@ public class DeckTest {
     @Test
     @DisplayName("Test card distribution for 10 players")
     public void testCardDistributionForTenPlayers() {
-        List<Card> player1Cards = testDeck.getTenRandomCard();
-        List<Card> player2Cards = testDeck.getTenRandomCard();
-        List<Card> player3Cards = testDeck.getTenRandomCard();
-        List<Card> player4Cards = testDeck.getTenRandomCard();
-        List<Card> player5Cards = testDeck.getTenRandomCard();
-        List<Card> player6Cards = testDeck.getTenRandomCard();
-        List<Card> player7Cards = testDeck.getTenRandomCard();
-        List<Card> player8Cards = testDeck.getTenRandomCard();
-        List<Card> player9Cards = testDeck.getTenRandomCard();
-        List<Card> player10Cards = testDeck.getTenRandomCard();
-        testDeck.getFourRandomCard();
-
-        assertFalse(player1Cards.equals(player2Cards));
-        assertFalse(player3Cards.equals(player4Cards));
-        assertFalse(player5Cards.equals(player6Cards));
-        assertFalse(player7Cards.equals(player8Cards));
-        assertFalse(player9Cards.equals(player10Cards));
+        // TODO: Remove this - test in Game -> Add 10 players and check if they have different cards
+        distributeCardsForTenPlayers();
     }
 
     @Test
     @DisplayName("Test card distribution for 11 players")
     public void testCardDistributionForElevenPlayers() {
         testDeck.getFourRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
+        distributeCardsForTenPlayers();
 
         Exception exception = assertThrows(RuntimeException.class, () -> {
             testDeck.getTenRandomCard();
@@ -86,16 +61,7 @@ public class DeckTest {
     @Test
     @DisplayName("Test when not enough cards to get 4 cards")
     public void testWhenNotEnoughCardsToGet4Cards() {
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
-        testDeck.getTenRandomCard();
+        distributeCardsForTenPlayers();
         testDeck.getFourRandomCard();
 
         Exception exception = assertThrows(RuntimeException.class, () -> {
@@ -106,5 +72,11 @@ public class DeckTest {
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.equals(expectedMessage));
+    }
+
+    private void distributeCardsForTenPlayers() {
+        for (int i = 0; i < 10; i++) {
+            testDeck.getTenRandomCard();
+        }
     }
 }
