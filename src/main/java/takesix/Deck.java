@@ -1,15 +1,15 @@
-package Nimmt6;
+package takesix;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Deck {
     private List<Card> cards;
-    private final int NUMBER_OF_CARDS = 104;
-    private final List<Integer> CARDS_WITH_SEVEN_CATTLE_HEADS = Arrays.asList(55);
-    private final List<Integer> CARDS_WITH_FIVE_CATTLE_HEADS = Arrays.asList(11, 22, 33, 44, 66, 77, 88, 99);
-    private final List<Integer> CARDS_WITH_THREE_CATTLE_HEADS = Arrays.asList(10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
-    private final List<Integer> CARDS_WITH_TWO_CATTLE_HEADS = Arrays.asList(5, 15, 25, 35, 45, 65, 75, 85, 95);
+    private static final int NUMBER_OF_CARDS = 104;
+    private static final List<Integer> CARDS_WITH_SEVEN_CATTLE_HEADS = Arrays.asList(55);
+    private static final List<Integer> CARDS_WITH_FIVE_CATTLE_HEADS = Arrays.asList(11, 22, 33, 44, 66, 77, 88, 99);
+    private static final List<Integer> CARDS_WITH_THREE_CATTLE_HEADS = Arrays.asList(10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
+    private static final List<Integer> CARDS_WITH_TWO_CATTLE_HEADS = Arrays.asList(5, 15, 25, 35, 45, 65, 75, 85, 95);
 
     Deck() {
         initCards();

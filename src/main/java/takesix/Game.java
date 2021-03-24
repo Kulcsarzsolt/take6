@@ -1,4 +1,4 @@
-package Nimmt6;
+package takesix;
 
 import java.util.ArrayList;
 import java.util.List;

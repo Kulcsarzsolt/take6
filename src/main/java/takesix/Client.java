@@ -1,4 +1,4 @@
-package Nimmt6;
+package takesix;
 
 import java.io.*;
 import java.net.Socket;

@@ -1,7 +1,6 @@
-package Nimmt6;
+package takesix;
 
 import java.util.List;
-import java.util.Set;
 
 // TODO: Remove this - Just for testing
 public class Main {
